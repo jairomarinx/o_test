@@ -1,0 +1,46 @@
+# WordPress Core
+/wp-admin/
+/wp-includes/
+*.log
+debug.log
+
+# Configuración sensible
+wp-config.php
+wp-config-sample.php
+
+
+# Caché y archivos temporales
+wp-content/cache/
+wp-content/upgrade/
+wp-content/uploads/
+*.bak
+*.swp
+
+# Archivos del servidor y entorno
+.htaccess
+.env
+.DS_Store
+Thumbs.db
+
+# Dependencias de Composer y Node.js
+vendor/
+node_modules/
+composer.lock
+package-lock.json
+yarn.lock
+
+# Archivos de compilación y SASS
+*.map
+*.scssc
+*.sass-cache
+
+# IDEs y editores
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Docker y entornos locales
+docker-compose.yml
+*.sql
+*.sqlite
