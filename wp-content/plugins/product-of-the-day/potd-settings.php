@@ -71,4 +71,33 @@ function potd_admin_email_callback() {
     $email = get_option('potd_admin_email', '');
     echo '<input type="text" name="potd_admin_email" value="' . esc_attr($email) . '" class="regular-text">';
 }
+
+// Handle AJAX request to register product clicks
+function potd_register_product_click() {
+    if (isset($_POST['product_id'])) {
+        $product_id = intval($_POST['product_id']);
+        $clicks = get_post_meta($product_id, '_potd_clicks', true);
+        $clicks = ($clicks) ? $clicks + 1 : 1;
+        update_post_meta($product_id, '_potd_clicks', $clicks);
+    }
+    wp_die();
+}
+add_action('wp_ajax_register_product_click', 'potd_register_product_click');
+add_action('wp_ajax_nopriv_register_product_click', 'potd_register_product_click');
+
+// Add Clicks Column to Product List in Admin Panel
+function potd_add_clicks_column($columns) {
+    $columns['potd_clicks'] = 'Clicks';
+    return $columns;
+}
+add_filter('manage_product_posts_columns', 'potd_add_clicks_column');
+
+function potd_display_clicks_column($column, $post_id) {
+    if ($column === 'potd_clicks') {
+        $clicks = get_post_meta($post_id, '_potd_clicks', true);
+        echo ($clicks) ? $clicks : '0';
+    }
+}
+add_action('manage_product_posts_custom_column', 'potd_display_clicks_column', 10, 2);
+
 ?>
