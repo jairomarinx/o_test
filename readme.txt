@@ -24,7 +24,11 @@ Key features:
 
 Dynamic menu (header.php), configured through WordPress Admin.
 
-Custom post display with category-based banners (index.php).
+Custom post display with category-based banners (index.php). I decideed that the best approach to this, was to use the
+
+category for the post, so there are cathegory "Root A" and cathegory "root b" everything in the category Root A is going to show Banner A and
+
+everything in the category root b show banner b.
 
 Individual product pages (single-product.php).
 
